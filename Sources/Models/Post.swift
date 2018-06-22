@@ -83,8 +83,8 @@ public class Post: Object, Postable {
         
         // Retrieve associated models
         author = User(json: json[.author])
-        categories = List<Term>(json[.categories].map(Term.init))
-        tags = List<Term>(json[.tags].map(Term.init))
+        categories = List<Term>().with { $0.append(objectsIn: json[.categories].map(Term.init)) }
+        tags = List<Term>().with { $0.append(objectsIn: json[.tags].map(Term.init)) }
         
         let image = Media(json: json[.media])
         if !image.link.isEmpty {

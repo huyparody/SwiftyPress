@@ -48,7 +48,7 @@ extension RealmControllable {
             byKeyPath: sortProperty, ascending: sortAscending)
         
         // Set results notification block
-        notificationToken = models?.addNotificationBlock { [unowned self] (changes: RealmCollectionChange) in
+        notificationToken = models?.observe { [unowned self] (changes: RealmCollectionChange) in
             switch changes {
             case .initial, .update:
                 self.dataView.reloadData()

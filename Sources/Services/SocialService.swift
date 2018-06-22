@@ -16,7 +16,7 @@ public struct SocialService {
      - returns: Returns tuple of categories
      */
     public static var storedItems: [(title: String?, link: String?, icon: String?, app: String?)] = {
-        AppGlobal.userDefaults[.social].flatMap {
+        AppGlobal.userDefaults[.social].compactMap {
             guard let link = $0["link"] as? String, !link.isEmpty else { return nil }
             return ($0["title"] as? String, link, $0["icon"] as? String, $0["app"] as? String)
         }

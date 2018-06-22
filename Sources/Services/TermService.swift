@@ -92,7 +92,7 @@ extension TermService {
                 // Persist to local storage if applicable
                 if !results.isEmpty {
                     do {
-                        try realm.write { realm.add(List(results), update: true) }
+                        try realm.write { realm.add(List<Term>().with { $0.append(objectsIn: results) }, update: true) }
                         Log(debug: "Terms updated from remote server: \(results.count) items.")
                     } catch {
                         completion?(.failure(PressError.databaseFail))

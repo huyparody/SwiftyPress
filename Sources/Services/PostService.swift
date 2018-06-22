@@ -115,7 +115,7 @@ extension PostService {
                 if !results.updated.isEmpty {
                     do {
                         guard let posts = results.updated as? [Post] else { throw PressError.parseFail }
-                        try realm.write { realm.add(List(posts), update: true) }
+                        try realm.write { realm.add(List<Post>().with { $0.append(objectsIn: posts) }, update: true) }
                         Log(debug: "Posts updated from remote server: \(results.updated.count) updated items, \(results.created.count) new items.")
                     } catch {
                         completion?(.failure(PressError.databaseFail))

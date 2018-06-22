@@ -18,9 +18,9 @@ extension Tutorable where Self: UIViewController {
         // Start tutorial if applicable
         if displayMultipleTimes || !AppGlobal.userDefaults[.isTutorialFinished] {
             let alertView = AlertOnboarding(
-                arrayOfImage: AppGlobal.userDefaults[.tutorial].flatMap { $0["image"] as? String },
-                arrayOfTitle: AppGlobal.userDefaults[.tutorial].flatMap { $0["title"] as? String },
-                arrayOfDescription: AppGlobal.userDefaults[.tutorial].flatMap { $0["desc"] as? String })
+                arrayOfImage: AppGlobal.userDefaults[.tutorial].compactMap { $0["image"] as? String },
+                arrayOfTitle: AppGlobal.userDefaults[.tutorial].compactMap { $0["title"] as? String },
+                arrayOfDescription: AppGlobal.userDefaults[.tutorial].compactMap { $0["desc"] as? String })
 
             alertView.delegate = self
     

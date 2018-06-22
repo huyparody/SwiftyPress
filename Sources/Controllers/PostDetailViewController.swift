@@ -140,10 +140,10 @@ extension PostDetailViewController {
                 "title": model.title,
                 "content": model.content,
                 "date": model.date?.dateString(in: .medium) ?? "",
-                "categories": model.categories.flatMap({ item in
+                "categories": model.categories.compactMap({ item in
                     "<a href='\(AppGlobal.userDefaults[.baseURL])/category/\(item.slug)'>\(item.name)</a>"
                 }).joined(separator: ", "),
-                "tags": model.tags.flatMap({ item in item.name }).joined(separator: ", "),
+                "tags": model.tags.compactMap({ item in item.name }).joined(separator: ", "),
                 "isAffiliate": true,
                 "style": style
             ] as [String : Any]
